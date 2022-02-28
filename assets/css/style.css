@@ -1,0 +1,89 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+#page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../img/books.jpg');
+}
+
+.modal{
+    display : none;
+    background-color:  'rgba(255, 255, 255, .1)';
+    border : 1px solid black;
+    position : absolute;
+    width : 50vw;
+    height : 50vh;
+    /* backdrop-filter: blur(20px); */
+    background-color: yellow;
+    overflow: scroll;
+    padding: 10px;
+    /* font-family: 'Permanent Marker', cursive; */
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 1vw;
+}
+
+.modal::-webkit-scrollbar {
+    display: none;
+}
+
+header h1{
+    font-family: 'Permanent Marker', cursive;
+    font-size: 10vw;
+    color: whitesmoke;
+    text-shadow: 5px 5px 5px black;
+}
+
+p{
+    /* font-family: 'Permanent Marker', cursive; */
+    font-family: 'Gentium Book Basic', serif;
+    font-size: 1vw;
+    padding: 10px;
+    text-align: center;
+}
+
+p:hover{
+    cursor: pointer;
+}
+
+p:nth-child(odd) {
+    background-color: white;
+  }
+
+  p:nth-child(odd):hover{
+      background-color: rgb(156, 146, 146);
+  }
+  
+  p:nth-child(even) {
+    background-color: grey;
+  }
+
+#search-field{
+    width: 30vw;
+    height: 5vh;
+    padding: 7px;
+    font-size: 1vw;
+    border-radius: 17px;
+}
+
+button{
+    height: 5vh;
+    width: 5vw;
+    font-size: 1vw;
+    border: none;
+    border-radius: 10px;
+    background-color: orange;
+    font-weight: bold;
+    font-family: 'Gentium Book Basic', serif;
+} 
+
+
+
