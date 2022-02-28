@@ -38,14 +38,10 @@ document.addEventListener('DOMContentLoaded', function (){
     let desc;
     
     document.getElementById('search-button').addEventListener('click', function(){
-        if(searchField.value == ''){
-            resultsContainer.style.display = 'none';
-        }
+                
+        resultsContainer.style.display = "flex";
+        resultsContainer.style.flexDirection = "column";
         
-        else{
-            resultsContainer.style.display = "flex";
-            resultsContainer.style.flexDirection = "column";
-        }
 
         resultsContainer.innerHTML = '';
 
@@ -53,75 +49,81 @@ document.addEventListener('DOMContentLoaded', function (){
         
         
         fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
-        .then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
-            alert("Genere non trovato.")})
+        .then(response => response.json())
         // .then(response => response.json())
         .then(data => {
 
-            for(let x of data.works){
-    
-                let result = document.createElement('p');
-                result.id = `result${resId}`;
-                resId += 1;
-                result.innerHTML = x.title +' - '+ x.authors[0].name;
+            if('error' in data){
+                resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
+            }
+            else if('work_count' in data && data.work_count < 1){
+                resultsContainer.innerText = 'Nessun risultato per il genere inserito'
+            }
+            
+            else{
                 
-                let modal = document.createElement('div');
-                modal.id = `modal${modId}`;
-                modal.className = 'modal';
-                modal.style.lineHeight = '1.5'
-                modId +=1;
-                
-                let modalClose = document.createElement('img')
-                modalClose.id = 'modal-close'
-                modalClose.src = 'assets/img/close_icon.svg'
-                modalClose.style.position = 'relative'
-                modalClose.style.width = '5%'
-                modalClose.style.left = '95%'
-                modalClose.style.marginBottom = '3px'
-                
-                // let modalHeader = document.createElement('H1');
-                // var t = document.createTextNode("Description"); 
-                // modalHeader.appendChild(t);
-                // modalHeader.style.width = '2vw';
-                
-                
-                document.getElementById('results-container').appendChild(result);
-                
-                document.getElementById('page-container').appendChild(modal);
-                desc = x.key;
-
-                document.getElementById(modal.id).appendChild(modalClose);                
-                
-                // document.getElementById(modal.id).appendChild(modalHeader);
-                
-                
-                document.getElementById(result.id).addEventListener('click', function(){
-                    if(modal.style.display != 'flex'){
-                        // modalHeader.style.display = 'block';
-                        modal.style.display = 'flex';
-                        modal.style.flexDirection = 'column';
-
-                        
-                    }
+                for(let x of data.works){
+        
+                    let result = document.createElement('p');
+                    result.id = `result${resId}`;
+                    resId += 1;
+                    result.innerHTML = x.title +' - '+ x.authors[0].name;
                     
-                })
-                document.getElementById(modal.id).addEventListener('click', function(){
-                    if(modal.style.display == 'flex'){
-                        modal.style.display = 'none';
-                    }
-                })
-
-                fetch(`https://openlibrary.org${desc}.json`)
-                .then(response => response.json())
-                .then(data => {if(typeof data.description === 'object'){
-                    modal.innerHTML += data.description.value}
-                    else{
-                        modal.innerHTML += data.description;
-                    }
-                })
+                    let modal = document.createElement('div');
+                    modal.id = `modal${modId}`;
+                    modal.className = 'modal';
+                    modal.style.lineHeight = '1.5'
+                    modId +=1;
+                    
+                    let modalClose = document.createElement('img')
+                    modalClose.id = 'modal-close'
+                    modalClose.src = 'assets/img/close_icon.svg'
+                    modalClose.style.position = 'relative'
+                    modalClose.style.width = '5%'
+                    modalClose.style.left = '95%'
+                    modalClose.style.marginBottom = '3px'
+                    
+                    // let modalHeader = document.createElement('H1');
+                    // var t = document.createTextNode("Description"); 
+                    // modalHeader.appendChild(t);
+                    // modalHeader.style.width = '2vw';
+                    
+                    
+                    document.getElementById('results-container').appendChild(result);
+                    
+                    document.getElementById('page-container').appendChild(modal);
+                    desc = x.key;
+    
+                    document.getElementById(modal.id).appendChild(modalClose);                
+                    
+                    // document.getElementById(modal.id).appendChild(modalHeader);
+                    
+                    
+                    document.getElementById(result.id).addEventListener('click', function(){
+                        if(modal.style.display != 'flex'){
+                            // modalHeader.style.display = 'block';
+                            modal.style.display = 'flex';
+                            modal.style.flexDirection = 'column';
+    
+                            
+                        }
+                        
+                    })//QUI SOTTO: DEVI METTERE L'IMMAGINE IN UN BOTTONE, COSI CI PUOI AGGIUNGERE L'EVENTO
+                    document.getElementById(modalClose.id).addEventListener('click', function(){
+                        if(modal.style.display == 'flex'){
+                            modal.style.display = 'none';
+                        }
+                    })
+    
+                    fetch(`https://openlibrary.org${desc}.json`)
+                    .then(response => response.json())
+                    .then(data => {if(typeof data.description === 'object'){
+                        modal.innerHTML += data.description.value}
+                        else{
+                            modal.innerHTML += data.description;
+                        }
+                    })
+                }
             }
 
             resId = 0;
@@ -140,14 +142,10 @@ document.addEventListener('DOMContentLoaded', function (){
 
     document.getElementById('search-field').addEventListener('keypress', function (e) {
         if (e.key === 'Enter') {
-            if(searchField.value == ''){
-                resultsContainer.style.display = 'none';
-            }
+                       
+            resultsContainer.style.display = "flex";
+            resultsContainer.style.flexDirection = "column";
             
-            else{
-                resultsContainer.style.display = "flex";
-                resultsContainer.style.flexDirection = "column";
-            }
     
             resultsContainer.innerHTML = '';
     
@@ -155,12 +153,15 @@ document.addEventListener('DOMContentLoaded', function (){
             
             
             fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
-            .then((response) => { response.json()})
+            .then(response =>  response.json())
             // .then(response => response.json())
             .then(data => {
-                console.log(data)
-                if(data.error){
-                    alert("Errore, qualcosa e' andato storto.")
+                // console.log(typeof data)
+                if('error' in data){
+                    resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
+                }
+                else if('work_count' in data && data.work_count < 1){
+                    resultsContainer.innerText = 'Nessun risultato per il genere inserito'
                 }
                 
                 else{
