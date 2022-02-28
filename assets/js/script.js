@@ -73,6 +73,12 @@ document.addEventListener('DOMContentLoaded', function (){
                 modal.className = 'modal';
                 modId +=1;
                 
+                let modalClose = document.createElement('img')
+                modalClose.id = 'modal-close'
+                modalClose.src = '../img/close_icon.svg'
+                modalClose.style.position = 'relative'
+                modalClose.style.right = '1px'
+                
                 // let modalHeader = document.createElement('H1');
                 // var t = document.createTextNode("Description"); 
                 // modalHeader.appendChild(t);
@@ -83,7 +89,8 @@ document.addEventListener('DOMContentLoaded', function (){
                 
                 document.getElementById('page-container').appendChild(modal);
                 desc = x.key;
-                
+
+                document.getElementById(modal.id).appendChild(modalClose);                
                 
                 // document.getElementById(modal.id).appendChild(modalHeader);
                 
