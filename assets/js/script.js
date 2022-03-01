@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
     let resId = 0;
     let modId = 0;
+    let modCloseId = 0;
     let desc;
     
     document.getElementById('search-button').addEventListener('click', function(){
@@ -76,12 +77,13 @@ document.addEventListener('DOMContentLoaded', function (){
                     modId +=1;
                     
                     let modalClose = document.createElement('img')
-                    modalClose.id = 'modal-close'
+                    modalClose.id = `modal-close${modCloseId}`
                     modalClose.src = 'assets/img/close_icon.svg'
                     modalClose.style.position = 'relative'
                     modalClose.style.width = '5%'
                     modalClose.style.left = '95%'
                     modalClose.style.marginBottom = '3px'
+                    modCloseId += 1;
                     
                     // let modalHeader = document.createElement('H1');
                     // var t = document.createTextNode("Description"); 
@@ -128,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
             resId = 0;
             modId = 0;
+            modCloseId = 0;
             desc = '';
 
             
@@ -179,13 +182,22 @@ document.addEventListener('DOMContentLoaded', function (){
                         modal.style.lineHeight = '1.5'
                         modId +=1;
                         
-                        let modalClose = document.createElement('img')
-                        modalClose.id = 'modal-close'
-                        modalClose.src = 'assets/img/close_icon.svg'
-                        modalClose.style.position = 'relative'
-                        modalClose.style.width = '5%'
-                        modalClose.style.left = '95%'
-                        modalClose.style.marginBottom = '3px'
+                        let modalCloseDiv = document.createElement('div')
+                        modalCloseDiv.id = `modal-close-div${modCloseId}`
+                        modalCloseDiv.src = 'assets/img/close_icon.svg'
+                        modalCloseDiv.style.position = 'relative'
+                        modalCloseDiv.style.width = '5%'
+                        modalCloseDiv.style.left = '95%'
+                        modalCloseDiv.style.marginBottom = '3px'
+                        
+                        let modalCloseImg = document.createElement('img')
+                        modalCloseImg.id = `modal-close-img${modCloseId}`
+                        modalCloseImg.src = 'assets/img/close_icon.svg'
+                        // modalCloseImg.style.position = 'relative'
+                        modalCloseImg.style.width = '5%'
+                        // modalCloseImg.style.left = '95%'
+                        // modalCloseImg.style.marginBottom = '3px'
+                        modCloseId += 1;
                         
                         // let modalHeader = document.createElement('H1');
                         // var t = document.createTextNode("Description"); 
@@ -198,8 +210,9 @@ document.addEventListener('DOMContentLoaded', function (){
                         document.getElementById('page-container').appendChild(modal);
                         desc = x.key;
         
-                        document.getElementById(modal.id).appendChild(modalClose);                
+                        document.getElementById(modal.id).appendChild(modalCloseDiv);                
                         
+                        document.getElementById(modalCloseDiv.id).appendChild(modalCloseImg);
                         // document.getElementById(modal.id).appendChild(modalHeader);
                         
                         
@@ -213,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function (){
                             }
                             
                         })//QUI SOTTO: DEVI METTERE L'IMMAGINE IN UN BOTTONE, COSI CI PUOI AGGIUNGERE L'EVENTO
-                        document.getElementById(modalClose.id).addEventListener('click', function(){
+                        document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
                             if(modal.style.display == 'flex'){
                                 modal.style.display = 'none';
                             }
@@ -232,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function (){
     
                 resId = 0;
                 modId = 0;
+                modCloseId = 0;
                 desc = '';
     
                 
