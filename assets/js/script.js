@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function (){
     let resId = 0;
     let modId = 0;
     let modCloseId = 0;
+    let modParaId = 0;
     let desc;
     
     document.getElementById('search-button').addEventListener('click', function(){
@@ -204,6 +205,13 @@ document.addEventListener('DOMContentLoaded', function (){
                         // var t = document.createTextNode("Description"); 
                         // modalHeader.appendChild(t);
                         // modalHeader.style.width = '2vw';
+
+                        let modPara = document.createElement('p')
+                        modPara.id = `modpara${modParaId}`
+                        modPara.style.backgroundColor = 'green'
+                        // modPara.style.width = '30%'
+                        // modPara.style.height = '30%'
+                        modParaId += 1;
                         
                         
                         document.getElementById('results-container').appendChild(result);
@@ -216,7 +224,8 @@ document.addEventListener('DOMContentLoaded', function (){
                         document.getElementById(modalCloseDiv.id).appendChild(modalCloseImg);
                         // document.getElementById(modal.id).appendChild(modalHeader);
                         
-                        
+                        document.getElementById(modal.id).appendChild(modPara);
+
                         document.getElementById(result.id).addEventListener('click', function(){
                             if(modal.style.display != 'flex'){
                                 // modalHeader.style.display = 'block';
@@ -228,36 +237,64 @@ document.addEventListener('DOMContentLoaded', function (){
                             
                         })
 
-                        let modPara = document.createElement('p')
+
+                        document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
+                            if(modal.style.display == 'flex'){
+                                modal.style.display = 'none'
+                            }
+                        })
+
+
+                        
+
                         
         
                         fetch(`https://openlibrary.org${desc}.json`)
                         .then(response => response.json())
                         .then(data => {
-                            if(typeof data.description === 'object'){
-                                modal.innerHTML += data.description.value
-                                document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
-                                    if(modal.style.display == 'flex'){
-                                        modal.style.display = 'none'
-                                    }
-                                })
+                            if('description' in data){
+                                if(typeof data.description === 'object'){
+                                    modPara.innerText = data.description.value;                                    
+                                    
+                                }
+                                else{
+                                    modPara.innerText = data.description;
+                                    
+                                }
+
                             }
                             else{
-                                modal.innerHTML += data.description;
-                                document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
-                                    if(modal.style.display == 'flex'){
-                                        modal.style.display = 'none'
-                                    }
-                                })
+                                modPara.innerText = 'Nessuna descrizione trovata per il presente libro.'
+                                modPara.style.backgroundColor = 'red'
                             }
                         })
                         
+                        // fetch(`https://openlibrary.org${desc}.json`)
+                        // .then(response => response.json())
+                        // .then(data => {
+                        //     if(data.description in data){
+                        //         if(typeof data.description === 'object'){
+                        //             modal.innerHTML += data.description.value
+                        //             document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
+                        //                 if(modal.style.display == 'flex'){
+                        //                     modal.style.display = 'none'
+                        //                 }
+                        //             })
+                        //         }
+                        //         else{
+                        //             modal.innerHTML += data.description;
+                        //             document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
+                        //                 if(modal.style.display == 'flex'){
+                        //                     modal.style.display = 'none'
+                        //                 }
+                        //             })
+                        //         }
 
-                        // document.getElementById('page-container').addEventListener('click', function () {
-                        //     if(modal.style.display == 'flex'){
-                        //         modal.style.display = 'none'
                         //     }
                         // })
+                        
+
+                        
 
                     }
                 }
@@ -265,6 +302,7 @@ document.addEventListener('DOMContentLoaded', function (){
                 resId = 0;
                 modId = 0;
                 modCloseId = 0;
+                modParaId = 0;
                 desc = '';
     
                 
