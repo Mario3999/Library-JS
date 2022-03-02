@@ -174,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function (){
                         let result = document.createElement('p');
                         result.id = `result${resId}`;
                         resId += 1;
-                        result.innerHTML = x.title +' - '+ x.authors[0].name;
+                        result.innerText = x.title +' - '+ x.authors[0].name;
                         
                         let modal = document.createElement('div');
                         modal.id = `modal${modId}`;
@@ -182,19 +182,20 @@ document.addEventListener('DOMContentLoaded', function (){
                         modal.style.lineHeight = '1.5'
                         modId +=1;
                         
-                        let modalCloseDiv = document.createElement('div')
+                        let modalCloseDiv = document.createElement('button')
                         modalCloseDiv.id = `modal-close-div${modCloseId}`
                         modalCloseDiv.src = 'assets/img/close_icon.svg'
                         modalCloseDiv.style.position = 'relative'
                         modalCloseDiv.style.width = '5%'
                         modalCloseDiv.style.left = '95%'
                         modalCloseDiv.style.marginBottom = '3px'
+                        modalCloseDiv.style.cursor = 'pointer'
                         
                         let modalCloseImg = document.createElement('img')
                         modalCloseImg.id = `modal-close-img${modCloseId}`
                         modalCloseImg.src = 'assets/img/close_icon.svg'
                         // modalCloseImg.style.position = 'relative'
-                        modalCloseImg.style.width = '5%'
+                        modalCloseImg.style.width = '100%'
                         // modalCloseImg.style.left = '95%'
                         // modalCloseImg.style.marginBottom = '3px'
                         modCloseId += 1;
@@ -225,21 +226,39 @@ document.addEventListener('DOMContentLoaded', function (){
                                 
                             }
                             
-                        })//QUI SOTTO: DEVI METTERE L'IMMAGINE IN UN BOTTONE, COSI CI PUOI AGGIUNGERE L'EVENTO
-                        document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
-                            if(modal.style.display == 'flex'){
-                                modal.style.display = 'none';
-                            }
                         })
+
+                        let modPara = document.createElement('p')
+                        
         
                         fetch(`https://openlibrary.org${desc}.json`)
                         .then(response => response.json())
-                        .then(data => {if(typeof data.description === 'object'){
-                            modal.innerHTML += data.description.value}
+                        .then(data => {
+                            if(typeof data.description === 'object'){
+                                modal.innerHTML += data.description.value
+                                document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
+                                    if(modal.style.display == 'flex'){
+                                        modal.style.display = 'none'
+                                    }
+                                })
+                            }
                             else{
                                 modal.innerHTML += data.description;
+                                document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
+                                    if(modal.style.display == 'flex'){
+                                        modal.style.display = 'none'
+                                    }
+                                })
                             }
                         })
+                        
+
+                        // document.getElementById('page-container').addEventListener('click', function () {
+                        //     if(modal.style.display == 'flex'){
+                        //         modal.style.display = 'none'
+                        //     }
+                        // })
+
                     }
                 }
     
@@ -254,6 +273,8 @@ document.addEventListener('DOMContentLoaded', function (){
     
         }
     });
+    
+
     
 
     
