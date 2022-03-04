@@ -181,16 +181,17 @@ document.addEventListener('DOMContentLoaded', function (){
                         modal.id = `modal${modId}`;
                         modal.className = 'modal';
                         modal.style.lineHeight = '1.5'
+                        modal.style.borderRadius = '10px'
                         modId +=1;
                         
-                        let modalCloseDiv = document.createElement('button')
-                        modalCloseDiv.id = `modal-close-div${modCloseId}`
-                        modalCloseDiv.src = 'assets/img/close_icon.svg'
-                        modalCloseDiv.style.position = 'relative'
-                        modalCloseDiv.style.width = '5%'
-                        modalCloseDiv.style.left = '95%'
-                        modalCloseDiv.style.marginBottom = '3px'
-                        modalCloseDiv.style.cursor = 'pointer'
+                        let modalCloseBtn = document.createElement('button')
+                        modalCloseBtn.id = `modal-close-btn${modCloseId}`
+                        modalCloseBtn.src = 'assets/img/close_icon.svg'
+                        modalCloseBtn.style.position = 'relative'
+                        modalCloseBtn.style.width = '5%'
+                        modalCloseBtn.style.left = '95%'
+                        modalCloseBtn.style.marginBottom = '3px'
+                        modalCloseBtn.style.cursor = 'pointer'
                         
                         let modalCloseImg = document.createElement('img')
                         modalCloseImg.id = `modal-close-img${modCloseId}`
@@ -208,7 +209,9 @@ document.addEventListener('DOMContentLoaded', function (){
 
                         let modPara = document.createElement('p')
                         modPara.id = `modpara${modParaId}`
-                        modPara.style.backgroundColor = 'green'
+                        modPara.style.backgroundColor = '#5F9EA0'
+                        modPara.style.borderRadius = ' 10px'
+                        modPara.style.padding = '10px'
                         // modPara.style.width = '30%'
                         // modPara.style.height = '30%'
                         modParaId += 1;
@@ -219,9 +222,9 @@ document.addEventListener('DOMContentLoaded', function (){
                         document.getElementById('page-container').appendChild(modal);
                         desc = x.key;
         
-                        document.getElementById(modal.id).appendChild(modalCloseDiv);                
+                        document.getElementById(modal.id).appendChild(modalCloseBtn);                
                         
-                        document.getElementById(modalCloseDiv.id).appendChild(modalCloseImg);
+                        document.getElementById(modalCloseBtn.id).appendChild(modalCloseImg);
                         // document.getElementById(modal.id).appendChild(modalHeader);
                         
                         document.getElementById(modal.id).appendChild(modPara);
@@ -231,16 +234,20 @@ document.addEventListener('DOMContentLoaded', function (){
                                 // modalHeader.style.display = 'block';
                                 modal.style.display = 'flex';
                                 modal.style.flexDirection = 'column';
+                                // pageContainer.style.filter = 'blur(5px)'
+                                resultsContainer.style.pointerEvents = 'none'
+                                resultsContainer.style.filter = 'blur(5px)'
         
                                 
                             }
-                            
                         })
 
 
-                        document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
+                        document.getElementById(modalCloseBtn.id).addEventListener('click', function(){
                             if(modal.style.display == 'flex'){
                                 modal.style.display = 'none'
+                                resultsContainer.style.removeProperty('pointer-events')
+                                resultsContainer.style.removeProperty('filter')
                             }
                         })
 
@@ -311,6 +318,8 @@ document.addEventListener('DOMContentLoaded', function (){
     
         }
     });
+    
+    
     
 
     
