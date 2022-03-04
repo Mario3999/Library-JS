@@ -202,6 +202,8 @@ document.addEventListener('DOMContentLoaded', function (){
                         // modalCloseImg.style.marginBottom = '3px'
                         modCloseId += 1;
                         
+                        
+                        
                         // let modalHeader = document.createElement('H1');
                         // var t = document.createTextNode("Description"); 
                         // modalHeader.appendChild(t);
