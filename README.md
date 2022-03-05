@@ -8,7 +8,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Mario3999/Counter">
-    <img src="assets/img/pitch-counter.png" alt="Logo" width="100" height="100">
+    <img src="assets/img/Library-JS.png" alt="Logo" width="100" height="100">
   </a>
 
 </div>
