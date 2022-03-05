@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', function (){
     // modalCloseImg.style.left = '95%'
     // modalCloseImg.style.marginBottom = '3px'
 
+    let errorMsg = document.createElement('p')
+    errorMsg.className = 'errorMsg'
+    errorMsg.style.backgroundColor = 'red'
+
     document.getElementById('results-container').appendChild(resContainerCloseBtn)
     document.getElementById('resContainer-close-btn').appendChild(resContainerCloseImg)
 
@@ -251,10 +255,11 @@ document.addEventListener('DOMContentLoaded', function (){
             
     
             // resultsContainer.innerHTML = '';
+            // resultsContainer.innerText = '';
     
             document.querySelectorAll(".results").forEach(el => el.remove());
             document.querySelectorAll(".modal").forEach(el => el.remove());
-            
+            document.querySelectorAll(".errorMsg").forEach(el => el.remove());
             
             fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
             .then(response =>  response.json())
@@ -262,14 +267,18 @@ document.addEventListener('DOMContentLoaded', function (){
             .then(data => {
                 // console.log(typeof data)
                 if('error' in data){
-                    resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
+                    // resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
+                    resultsContainer.appendChild(errorMsg)
+                    errorMsg.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
                 }
                 else if('work_count' in data && data.work_count < 1){
-                    resultsContainer.innerText = 'Nessun risultato per il genere inserito'
+                    // resultsContainer.innerText = 'Nessun risultato per il genere inserito.'
+                    resultsContainer.appendChild(errorMsg)
+                    errorMsg.innerText = 'Nessun risultato per il genere inserito.'
                 }
                 
                 else{
-                    
+    
                     for(let x of data.works){
             
                         let result = document.createElement('p');
