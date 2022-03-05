@@ -21,17 +21,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
     document.getElementById('page-container').appendChild(resultsContainer);
 
-    // let resultsShow = document.createElement('p');
-    // resultsShow.style.width = '100%';
-    // resultsShow.style.height = '100%';
-    // resultsShow.style.overflow = 'scroll';
-    // resultsShow.style.backgroundColor = 'red';
-    // resultsShow.innerHTML = fetch('https://openlibrary.org/subjects/fantasy.json')
     
-
-
-
-    // document.getElementById('results-container').appendChild(resultsShow);
     let searchField = document.getElementById('search-field');
 
     let resContainerCloseBtn = document.createElement('button')
@@ -45,10 +35,7 @@ document.addEventListener('DOMContentLoaded', function (){
     let resContainerCloseImg = document.createElement('img')
     resContainerCloseImg.id = 'resContainer-close-img'
     resContainerCloseImg.src = 'assets/img/close_icon.svg'
-    // modalCloseImg.style.position = 'relative'
     resContainerCloseImg.style.width = '100%'
-    // modalCloseImg.style.left = '95%'
-    // modalCloseImg.style.marginBottom = '3px'
 
     let errorMsg = document.createElement('p')
     errorMsg.className = 'errorMsg'
@@ -73,10 +60,6 @@ document.addEventListener('DOMContentLoaded', function (){
                 
         resultsContainer.style.display = "flex";
         resultsContainer.style.flexDirection = "column";
-        
-
-        // resultsContainer.innerHTML = '';
-        // resultsContainer.innerText = '';
 
         document.querySelectorAll(".results").forEach(el => el.remove());
         document.querySelectorAll(".modal").forEach(el => el.remove());
@@ -88,16 +71,12 @@ document.addEventListener('DOMContentLoaded', function (){
         
         fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
         .then(response =>  response.json())
-        // .then(response => response.json())
         .then(data => {
-            // console.log(typeof data)
             if('error' in data){
-                // resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
                 resultsContainer.appendChild(errorMsg)
                 errorMsg.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
             }
             else if('work_count' in data && data.work_count < 1){
-                // resultsContainer.innerText = 'Nessun risultato per il genere inserito.'
                 resultsContainer.appendChild(errorMsg)
                 errorMsg.innerText = 'Nessun risultato per il genere inserito.'
             }
@@ -130,26 +109,15 @@ document.addEventListener('DOMContentLoaded', function (){
                     let modalCloseImg = document.createElement('img')
                     modalCloseImg.id = `modal-close-img${modCloseId}`
                     modalCloseImg.src = 'assets/img/close_icon.svg'
-                    // modalCloseImg.style.position = 'relative'
                     modalCloseImg.style.width = '100%'
-                    // modalCloseImg.style.left = '95%'
-                    // modalCloseImg.style.marginBottom = '3px'
+                    
                     modCloseId += 1;
-                    
-                    
-                    
-                    // let modalHeader = document.createElement('H1');
-                    // var t = document.createTextNode("Description"); 
-                    // modalHeader.appendChild(t);
-                    // modalHeader.style.width = '2vw';
 
                     let modPara = document.createElement('p')
                     modPara.id = `modpara${modParaId}`
                     modPara.style.backgroundColor = '#5F9EA0'
                     modPara.style.borderRadius = ' 10px'
                     modPara.style.padding = '10px'
-                    // modPara.style.width = '30%'
-                    // modPara.style.height = '30%'
                     modParaId += 1;
                     
                     
@@ -161,16 +129,13 @@ document.addEventListener('DOMContentLoaded', function (){
                     document.getElementById(modal.id).appendChild(modalCloseBtn);                
                     
                     document.getElementById(modalCloseBtn.id).appendChild(modalCloseImg);
-                    // document.getElementById(modal.id).appendChild(modalHeader);
                     
                     document.getElementById(modal.id).appendChild(modPara);
 
                     document.getElementById(result.id).addEventListener('click', function(){
                         if(modal.style.display != 'flex'){
-                            // modalHeader.style.display = 'block';
                             modal.style.display = 'flex';
                             modal.style.flexDirection = 'column';
-                            // pageContainer.style.filter = 'blur(5px)'
                             resultsContainer.style.pointerEvents = 'none'
                             resultsContainer.style.filter = 'blur(5px)'
     
@@ -188,10 +153,6 @@ document.addEventListener('DOMContentLoaded', function (){
                     })
 
 
-                    
-
-                    
-    
                     fetch(`https://openlibrary.org${desc}.json`)
                     .then(response => response.json())
                     .then(data => {
@@ -212,33 +173,6 @@ document.addEventListener('DOMContentLoaded', function (){
                         }
                     })
                     
-                    // fetch(`https://openlibrary.org${desc}.json`)
-                    // .then(response => response.json())
-                    // .then(data => {
-                    //     if(data.description in data){
-                    //         if(typeof data.description === 'object'){
-                    //             modal.innerHTML += data.description.value
-                    //             document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
-                    //                 if(modal.style.display == 'flex'){
-                    //                     modal.style.display = 'none'
-                    //                 }
-                    //             })
-                    //         }
-                    //         else{
-                    //             modal.innerHTML += data.description;
-                    //             document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
-                    //                 if(modal.style.display == 'flex'){
-                    //                     modal.style.display = 'none'
-                    //                 }
-                    //             })
-                    //         }
-
-                    //     }
-                    // })
-                    
-
-                    
-
                 }
             }
 
@@ -252,8 +186,6 @@ document.addEventListener('DOMContentLoaded', function (){
         
         })
         
-
-        
     });
 
     document.getElementById('search-field').addEventListener('keypress', function (e) {
@@ -261,10 +193,6 @@ document.addEventListener('DOMContentLoaded', function (){
                        
             resultsContainer.style.display = "flex";
             resultsContainer.style.flexDirection = "column";
-            
-    
-            // resultsContainer.innerHTML = '';
-            // resultsContainer.innerText = '';
     
             document.querySelectorAll(".results").forEach(el => el.remove());
             document.querySelectorAll(".modal").forEach(el => el.remove());
@@ -276,16 +204,12 @@ document.addEventListener('DOMContentLoaded', function (){
             
             fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
             .then(response =>  response.json())
-            // .then(response => response.json())
             .then(data => {
-                // console.log(typeof data)
                 if('error' in data){
-                    // resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
                     resultsContainer.appendChild(errorMsg)
                     errorMsg.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
                 }
                 else if('work_count' in data && data.work_count < 1){
-                    // resultsContainer.innerText = 'Nessun risultato per il genere inserito.'
                     resultsContainer.appendChild(errorMsg)
                     errorMsg.innerText = 'Nessun risultato per il genere inserito.'
                 }
@@ -318,26 +242,17 @@ document.addEventListener('DOMContentLoaded', function (){
                         let modalCloseImg = document.createElement('img')
                         modalCloseImg.id = `modal-close-img${modCloseId}`
                         modalCloseImg.src = 'assets/img/close_icon.svg'
-                        // modalCloseImg.style.position = 'relative'
                         modalCloseImg.style.width = '100%'
-                        // modalCloseImg.style.left = '95%'
-                        // modalCloseImg.style.marginBottom = '3px'
+
                         modCloseId += 1;
                         
-                        
-                        
-                        // let modalHeader = document.createElement('H1');
-                        // var t = document.createTextNode("Description"); 
-                        // modalHeader.appendChild(t);
-                        // modalHeader.style.width = '2vw';
 
                         let modPara = document.createElement('p')
                         modPara.id = `modpara${modParaId}`
                         modPara.style.backgroundColor = '#5F9EA0'
                         modPara.style.borderRadius = ' 10px'
                         modPara.style.padding = '10px'
-                        // modPara.style.width = '30%'
-                        // modPara.style.height = '30%'
+
                         modParaId += 1;
                         
                         
@@ -349,16 +264,13 @@ document.addEventListener('DOMContentLoaded', function (){
                         document.getElementById(modal.id).appendChild(modalCloseBtn);                
                         
                         document.getElementById(modalCloseBtn.id).appendChild(modalCloseImg);
-                        // document.getElementById(modal.id).appendChild(modalHeader);
                         
                         document.getElementById(modal.id).appendChild(modPara);
 
                         document.getElementById(result.id).addEventListener('click', function(){
                             if(modal.style.display != 'flex'){
-                                // modalHeader.style.display = 'block';
                                 modal.style.display = 'flex';
                                 modal.style.flexDirection = 'column';
-                                // pageContainer.style.filter = 'blur(5px)'
                                 resultsContainer.style.pointerEvents = 'none'
                                 resultsContainer.style.filter = 'blur(5px)'
         
@@ -374,10 +286,6 @@ document.addEventListener('DOMContentLoaded', function (){
                                 resultsContainer.style.removeProperty('filter')
                             }
                         })
-
-
-                        
-
                         
         
                         fetch(`https://openlibrary.org${desc}.json`)
@@ -400,33 +308,7 @@ document.addEventListener('DOMContentLoaded', function (){
                             }
                         })
                         
-                        // fetch(`https://openlibrary.org${desc}.json`)
-                        // .then(response => response.json())
-                        // .then(data => {
-                        //     if(data.description in data){
-                        //         if(typeof data.description === 'object'){
-                        //             modal.innerHTML += data.description.value
-                        //             document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
-                        //                 if(modal.style.display == 'flex'){
-                        //                     modal.style.display = 'none'
-                        //                 }
-                        //             })
-                        //         }
-                        //         else{
-                        //             modal.innerHTML += data.description;
-                        //             document.getElementById(modalCloseDiv.id).addEventListener('click', function(){
-                        //                 if(modal.style.display == 'flex'){
-                        //                     modal.style.display = 'none'
-                        //                 }
-                        //             })
-                        //         }
-
-                        //     }
-                        // })
                         
-
-                        
-
                     }
                 }
     
@@ -435,73 +317,12 @@ document.addEventListener('DOMContentLoaded', function (){
                 modCloseId = 0;
                 modParaId = 0;
                 desc = '';
-    
-                
             
             })
     
         }
     });
     
-    
-    
-
-    
-
-    
-    
-    
-    // resultsShow.innerText = fetch('https://openlibrary.org/subjects/fantasy.json')
-    //     .then(response => response.json())
-    //     .then( data => console.log(data));
-
-    
-    
-    
-    
-
-        //fetch(`https://openlibrary.org/works/${}`))
-        // .then( function () {document.getElementById('modal').addEventListener('click', function(){
-        //     if(modal.style.display == 'block'){
-        //         document.getElementById('modal').style.display = 'none';
-
-        //     }
-        // })})
-    
-
-
-    
-    
-    // let resForLoop = document.getElementsByClassName('result');
-    
-    // alert(typeof resForLoop[0])
-    // alert(typeof resultsContainer)
-
-    // document.getElementById('meca').addEventListener('click', function(){
-    //     document.body.style.backgroundColor = 'red';
-    // })
-
-    // document.getElementById('result0').addEventListener('click', function(){
-    //     document.body.style.backgroundColor = 'red';
-    // })
-    
-    // for(let k=0; k < resForLoop.length; k++){
-    //     document.getElementsByClassName('result')[k].addEventListener('click', function(){
-    //         document.body.style.backgroundColor = 'red';
-    //     })
-    // }
-
-
-    // fetch('https://openlibrary.org/subjects/fantasy.json')
-
-    //     .then(response => response.json())
-    //     .then( data => console.log(data));
-        
-    // function cazzo(){
-    //     alert(ciao);
-    // }
-    // cazzo;
-
     
 
 });

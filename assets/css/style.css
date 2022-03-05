@@ -81,14 +81,17 @@ header h1{
 }
 
 button{
+    position: absolute;
     height: 5vh;
     width: 5vw;
     font-size: 1vw;
     border: none;
+    border-style: outset;
     border-radius: 10px;
     background-color: orange;
     font-weight: bold;
     font-family: 'Gentium Book Basic', serif;
+    cursor: pointer;
 }
 
 
