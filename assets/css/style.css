@@ -81,7 +81,6 @@ header h1{
 }
 
 button{
-    position: absolute;
     height: 5vh;
     width: 5vw;
     font-size: 1vw;
