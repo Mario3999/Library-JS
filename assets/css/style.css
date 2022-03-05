@@ -89,7 +89,11 @@ button{
     background-color: orange;
     font-weight: bold;
     font-family: 'Gentium Book Basic', serif;
-} 
+}
+
+.errorMsg{
+    cursor: none;
+}
 
 
 
