@@ -7,8 +7,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/Mario3999/Counter">
-    <img src="assets/img/Library-JS.png" alt="Logo" width="100" height="100">
+  <a href="https://github.com/Mario3999/Library-JS">
+    <img src="assets/img/library.png" alt="Logo" width="100" height="100">
   </a>
 
 </div>
@@ -35,7 +35,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<img src="assets/img/Readme-Home.png" alt="" width="" height=""></img>
+<img src="assets/img/Library-JS.png" alt="" width="" height=""></img>
 
 Library-JS è stato sviluppato implementando in JavaScript le funzionalità di ricerca e visualizzazione dei risultati, contattando le API del servizio 'OpenLibrary' (The Internet Archive). 
 
