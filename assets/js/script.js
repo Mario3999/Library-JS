@@ -76,10 +76,15 @@ document.addEventListener('DOMContentLoaded', function (){
         
 
         // resultsContainer.innerHTML = '';
+        // resultsContainer.innerText = '';
 
         document.querySelectorAll(".results").forEach(el => el.remove());
         document.querySelectorAll(".modal").forEach(el => el.remove());
-        
+        document.querySelectorAll(".errorMsg").forEach(el => el.remove());
+
+        if(searchField.value.split(' ').length > 1){
+            searchField.value = searchField.value.split(' ').join('_')
+        }
         
         fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
         .then(response =>  response.json())
@@ -87,14 +92,18 @@ document.addEventListener('DOMContentLoaded', function (){
         .then(data => {
             // console.log(typeof data)
             if('error' in data){
-                resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
+                // resultsContainer.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
+                resultsContainer.appendChild(errorMsg)
+                errorMsg.innerText = `Errore, qualcosa e' andato storto: ${data.error}`
             }
             else if('work_count' in data && data.work_count < 1){
-                resultsContainer.innerText = 'Nessun risultato per il genere inserito'
+                // resultsContainer.innerText = 'Nessun risultato per il genere inserito.'
+                resultsContainer.appendChild(errorMsg)
+                errorMsg.innerText = 'Nessun risultato per il genere inserito.'
             }
             
             else{
-                
+
                 for(let x of data.works){
         
                     let result = document.createElement('p');
@@ -238,9 +247,9 @@ document.addEventListener('DOMContentLoaded', function (){
             modCloseId = 0;
             modParaId = 0;
             desc = '';
-    
-                
+
             
+        
         })
         
 
