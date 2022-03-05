@@ -260,6 +260,10 @@ document.addEventListener('DOMContentLoaded', function (){
             document.querySelectorAll(".results").forEach(el => el.remove());
             document.querySelectorAll(".modal").forEach(el => el.remove());
             document.querySelectorAll(".errorMsg").forEach(el => el.remove());
+
+            if(searchField.value.split(' ').length > 1){
+                searchField.value = searchField.value.split(' ').join('_')
+            }
             
             fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
             .then(response =>  response.json())
