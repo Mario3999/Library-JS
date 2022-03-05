@@ -1,7 +1,5 @@
 # Library-JS
 
-# Counter
-
 <div id="top"></div>
 
 
@@ -39,7 +37,7 @@
 
 <img src="assets/img/Readme-Home.png" alt="" width="" height=""></img>
 
-Il Counter è stato sviluppato implementando in JavaScript sia i 3 pulsanti ("+", "-", "Reset"), sia la visualizzazione del valore. L'app è "Responsive" e quindi accessibile in versione mobile, tablet e desktop.
+Library-JS è stato sviluppato implementando in JavaScript le funzionalità di ricerca e visualizzazione dei risultati, contattando le API del servizio 'OpenLibrary' (The Internet Archive). 
 
 ### Built With
 
@@ -50,12 +48,12 @@ Il Counter è stato sviluppato implementando in JavaScript sia i 3 pulsanti ("+"
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Il Counter dispone di 3 pulsanti: "+" (incremento), "-" (decremento), "Reset".
-Inoltre è possibile digitare la cifra desiderata all'interno del riquadro principale e utilizzare poi i pulsanti sopra elencati per modificare il valore del counter.
+Library-JS dispone di una 'textbox' e di un pulsante di ricerca. E' possibile inserire un genere letterario all'interno della casella di input e avviare la ricerca dei libri pertinenti ad esso sia tramite l'apposito pulsante di ricerca, sia tramite il tasto 'Enter' della tastiera. Una volta caricati i risultati, se si preme su uno di essi, comparirà una nuova finestra ('modal') che riporterà la descrizione completa del libro (se presente).
+Sia nel caso in cui la textbox venga lasciata vuota e la ricerca avviata, sia nel caso in cui il genere letterario inserito sia inesistente, verrà visualizzato un messaggio d'errore all'interno della finestra dei risultati.
 
 ## Project Link
 
-A questo link è possibile provare l'applicazione: [https://counter-f90ae.web.app/](https://counter-f90ae.web.app/)
+A questo link è possibile provare l'applicazione: [https://library-js-22eef.web.app/](https://library-js-22eef.web.app/)
 
 
 <!-- CONTACT -->
