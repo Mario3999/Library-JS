@@ -5,17 +5,17 @@ document.addEventListener('DOMContentLoaded', function (){
 
     let searchButton = document.getElementById('search-button');
 
-    let resultsContainer = document.createElement('div');
-    resultsContainer.id = 'results-container';
-    resultsContainer.style.display = 'none';
-    resultsContainer.style.width = '50%';
-    resultsContainer.style.height = '70%';
-    resultsContainer.style.overflow = 'scroll';
-    resultsContainer.style.border = '1px solid black';
-    resultsContainer.style.backgroundColor = 'white';
-    resultsContainer.style.borderRadius = '20px';
-    resultsContainer.style.marginBottom = '10px';
-    resultsContainer.style.boxShadow = '0px 0px 10px black'
+    let resultsContainer = document.createElement("div");
+    resultsContainer.id = "results-container";
+    resultsContainer.style.display = "none";
+    resultsContainer.style.width = "50%";
+    resultsContainer.style.height = "70%";
+    resultsContainer.style.overflow = "scroll";
+    resultsContainer.style.border = "1px solid black";
+    resultsContainer.style.backgroundColor = "white";
+    resultsContainer.style.borderRadius = "20px";
+    resultsContainer.style.marginBottom = "10px";
+    resultsContainer.style.boxShadow = "0px 0px 10px black";
 
     let pageContainer = document.getElementById('page-container');
 
