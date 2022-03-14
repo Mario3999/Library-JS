@@ -1,3 +1,5 @@
+// const { default: axios } = require("axios");
+
 document.addEventListener('DOMContentLoaded', function (){
     
     //Creo reference a 'search-button'
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function (){
     resContainerCloseImg.src = 'assets/img/close_icon.svg'
     resContainerCloseImg.style.width = '100%'
 
-    //Creo elemento 'p' per i messaggi di errori
+    //Creo elemento 'p' per i messaggi di errore
     let errorMsg = document.createElement('p')
     errorMsg.className = 'errorMsg'
     errorMsg.style.backgroundColor = 'red'
@@ -212,6 +214,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
             
             fetchSubjectApi();
+            fetchDescApi();
             
             // fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
             // .then(response =>  response.json())
@@ -336,18 +339,32 @@ document.addEventListener('DOMContentLoaded', function (){
 
     async function fetchSubjectApi() {
         try {
-          const response = await axios.get(`https://openlibrary.org/subjects/${searchField.value}.json`);
+          const subResponse = await axios.get(`https://openlibrary.org/subjects/${searchField.value}.json`);
+          console.log(subResponse)
+          desc = subResponse.data.works[0]
+          console.log(desc)
          
         }
         catch (error) {
-          console.error('Erroretto' + ' ' + error);
+          console.error('ErrorettoSubject' + ' ' + error);
         }
     }
 
-    const curu = ['Banana','Water','Chicken','Cake', 'Banana', 'Water', 'Water']
+    async function fetchDescApi() {
+        try{
+            const descResponse = await axios.get(`https://openlibrary.org${desc}.json`);
+            console.log(descResponse)
 
-    const lod = _.chunk(curu, 3);
-    alert(lod);
+        }
+        catch(error){
+            console.error('ErrorettoDesc' + ' ' + error)
+        }
+    }
+
+    // const curu = ['Banana','Water','Chicken','Cake', 'Banana', 'Water', 'Water']
+
+    // const lod = _.chunk(curu, 3);
+    // alert(lod);
     
     
 
