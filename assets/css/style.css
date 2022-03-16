@@ -124,7 +124,7 @@ header h1{
     border-radius: 17px;
 }
 
-#errorMsg{
+.errorMsg{
     background-color: red;
 }
 
