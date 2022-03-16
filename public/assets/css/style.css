@@ -31,10 +31,30 @@
     /* font-family: 'Permanent Marker', cursive; */
     font-family: 'Gentium Book Basic', serif;
     font-size: 1vw;
+    line-height: 1.5;
+    border-radius : 10px;
 }
 
 .modal::-webkit-scrollbar {
     display: none;
+}
+
+.modal-close-btn{
+    position: relative;
+    width: 5%;
+    left: 95%;
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+
+.modal-close-img{
+    width: 100%;
+}
+
+.modpara{
+    background-color: #5F9EA0;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 header h1{
@@ -44,12 +64,36 @@ header h1{
     text-shadow: 5px 5px 5px black;
 }
 
+#results-container{
+    display: none;
+    width: 50%;
+    height: 70%;
+    overflow: scroll;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px black;
+}
+
 #results-container p{
     /* font-family: 'Permanent Marker', cursive; */
     font-family: 'Gentium Book Basic', serif;
     font-size: 1vw;
     padding: 10px;
     text-align: center;
+}
+
+#resContainer-close-btn{
+    position: relative;
+    width: 5%;
+    left: 50%;
+    margin-bottom: 3px;
+    cursor: pointer;
+}
+
+#resContainer-close-img{
+    width: 100%;
 }
 
 #results-container p:hover{
@@ -78,6 +122,10 @@ header h1{
     padding: 7px;
     font-size: 1vw;
     border-radius: 17px;
+}
+
+#errorMsg{
+    background-color: red;
 }
 
 button{
