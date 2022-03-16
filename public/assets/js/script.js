@@ -78,6 +78,7 @@ async function fetchApi() {
         if(workCount < 1){
             resultsContainer.appendChild(errorMsg)
             errorMsg.innerText = 'Nessun risultato per il genere inserito.'
+            errorMsg.style.backgroundColor = 'red'
             return
         }
 
@@ -178,6 +179,7 @@ async function fetchApi() {
     catch (error) {
         resultsContainer.appendChild(errorMsg)
         errorMsg.innerText = `Messaggio d'errore: ${error.message}. Legenda errori = 400: errore nell'input inserito (caratteri speciali etc...), 404: pagina non trovata, 500: Internal Server Error.`
+        errorMsg.style.backgroundColor = 'red';
     }
     
     //Pulisco le variabili
