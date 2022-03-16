@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', function (){
 
             
             fetchSubjectApi();
-            fetchDescApi();
+            // fetchDescApi();
             
             // fetch(`https://openlibrary.org/subjects/${searchField.value}.json`)
             // .then(response =>  response.json())
@@ -230,100 +230,100 @@ document.addEventListener('DOMContentLoaded', function (){
                 
                 // else{
     
-                //     for(let x of data.works){
+                    // for(let x of data.works){
             
-                //         let result = document.createElement('p');
-                //         result.id = `result${resId}`;
-                //         result.className = 'results'
-                //         resId += 1;
-                //         result.innerText = x.title +' - '+ x.authors[0].name;
+                    //     let result = document.createElement('p');
+                    //     result.id = `result${resId}`;
+                    //     result.className = 'results'
+                    //     resId += 1;
+                    //     result.innerText = x.title +' - '+ x.authors[0].name;
                         
-                //         let modal = document.createElement('div');
-                //         modal.id = `modal${modId}`;
-                //         modal.className = 'modal';
-                //         modal.style.lineHeight = '1.5'
-                //         modal.style.borderRadius = '10px'
-                //         modId +=1;
+                    //     let modal = document.createElement('div');
+                    //     modal.id = `modal${modId}`;
+                    //     modal.className = 'modal';
+                    //     modal.style.lineHeight = '1.5'
+                    //     modal.style.borderRadius = '10px'
+                    //     modId +=1;
                         
-                //         let modalCloseBtn = document.createElement('button')
-                //         modalCloseBtn.id = `modal-close-btn${modCloseId}`
-                //         modalCloseBtn.style.position = 'relative'
-                //         modalCloseBtn.style.width = '5%'
-                //         modalCloseBtn.style.left = '95%'
-                //         modalCloseBtn.style.marginBottom = '3px'
-                //         modalCloseBtn.style.cursor = 'pointer'
+                    //     let modalCloseBtn = document.createElement('button')
+                    //     modalCloseBtn.id = `modal-close-btn${modCloseId}`
+                    //     modalCloseBtn.style.position = 'relative'
+                    //     modalCloseBtn.style.width = '5%'
+                    //     modalCloseBtn.style.left = '95%'
+                    //     modalCloseBtn.style.marginBottom = '3px'
+                    //     modalCloseBtn.style.cursor = 'pointer'
                         
-                //         let modalCloseImg = document.createElement('img')
-                //         modalCloseImg.id = `modal-close-img${modCloseId}`
-                //         modalCloseImg.src = 'assets/img/close_icon.svg'
-                //         modalCloseImg.style.width = '100%'
+                    //     let modalCloseImg = document.createElement('img')
+                    //     modalCloseImg.id = `modal-close-img${modCloseId}`
+                    //     modalCloseImg.src = 'assets/img/close_icon.svg'
+                    //     modalCloseImg.style.width = '100%'
 
-                //         modCloseId += 1;
+                    //     modCloseId += 1;
                         
 
-                //         let modPara = document.createElement('p')
-                //         modPara.id = `modpara${modParaId}`
-                //         modPara.style.backgroundColor = '#5F9EA0'
-                //         modPara.style.borderRadius = ' 10px'
-                //         modPara.style.padding = '10px'
+                    //     let modPara = document.createElement('p')
+                    //     modPara.id = `modpara${modParaId}`
+                    //     modPara.style.backgroundColor = '#5F9EA0'
+                    //     modPara.style.borderRadius = ' 10px'
+                    //     modPara.style.padding = '10px'
 
-                //         modParaId += 1;
+                    //     modParaId += 1;
                         
                         
-                //         document.getElementById('results-container').appendChild(result);
+                    //     document.getElementById('results-container').appendChild(result);
                         
-                //         document.getElementById('page-container').appendChild(modal);
-                //         desc = x.key;
+                    //     document.getElementById('page-container').appendChild(modal);
+                    //     desc = x.key;
         
-                //         document.getElementById(modal.id).appendChild(modalCloseBtn);                
+                    //     document.getElementById(modal.id).appendChild(modalCloseBtn);                
                         
-                //         document.getElementById(modalCloseBtn.id).appendChild(modalCloseImg);
+                    //     document.getElementById(modalCloseBtn.id).appendChild(modalCloseImg);
                         
-                //         document.getElementById(modal.id).appendChild(modPara);
+                    //     document.getElementById(modal.id).appendChild(modPara);
 
-                //         document.getElementById(result.id).addEventListener('click', function(){
-                //             if(modal.style.display != 'flex'){
-                //                 modal.style.display = 'flex';
-                //                 modal.style.flexDirection = 'column';
-                //                 resultsContainer.style.pointerEvents = 'none'
-                //                 resultsContainer.style.filter = 'blur(5px)'
+                    //     document.getElementById(result.id).addEventListener('click', function(){
+                    //         if(modal.style.display != 'flex'){
+                    //             modal.style.display = 'flex';
+                    //             modal.style.flexDirection = 'column';
+                    //             resultsContainer.style.pointerEvents = 'none'
+                    //             resultsContainer.style.filter = 'blur(5px)'
         
                                 
-                //             }
-                //         })
+                    //         }
+                    //     })
 
 
-                //         document.getElementById(modalCloseBtn.id).addEventListener('click', function(){
-                //             if(modal.style.display == 'flex'){
-                //                 modal.style.display = 'none'
-                //                 resultsContainer.style.removeProperty('pointer-events')
-                //                 resultsContainer.style.removeProperty('filter')
-                //             }
-                //         })
+                    //     document.getElementById(modalCloseBtn.id).addEventListener('click', function(){
+                    //         if(modal.style.display == 'flex'){
+                    //             modal.style.display = 'none'
+                    //             resultsContainer.style.removeProperty('pointer-events')
+                    //             resultsContainer.style.removeProperty('filter')
+                    //         }
+                    //     })
                         
         
-                //         fetch(`https://openlibrary.org${desc}.json`)
-                //         .then(response => response.json())
-                //         .then(data => {
-                //             if('description' in data){
-                //                 if(typeof data.description === 'object'){
-                //                     modPara.innerText = data.description.value;                                    
+                    //     fetch(`https://openlibrary.org${desc}.json`)
+                    //     .then(response => response.json())
+                    //     .then(data => {
+                    //         if('description' in data){
+                    //             if(typeof data.description === 'object'){
+                    //                 modPara.innerText = data.description.value;                                    
                                     
-                //                 }
-                //                 else{
-                //                     modPara.innerText = data.description;
+                    //             }
+                    //             else{
+                    //                 modPara.innerText = data.description;
                                     
-                //                 }
+                    //             }
 
-                //             }
-                //             else{
-                //                 modPara.innerText = 'Nessuna descrizione trovata per il presente libro.'
-                //                 modPara.style.backgroundColor = 'red'
-                //             }
-                //         })
+                    //         }
+                    //         else{
+                    //             modPara.innerText = 'Nessuna descrizione trovata per il presente libro.'
+                    //             modPara.style.backgroundColor = 'red'
+                    //         }
+                    //     })
                         
                         
-                //     }
+                    // }
                 // }
     
             //     resId = 0;
@@ -339,32 +339,176 @@ document.addEventListener('DOMContentLoaded', function (){
 
     async function fetchSubjectApi() {
         try {
-          const subResponse = await axios.get(`https://openlibrary.org/subjects/${searchField.value}.json`);
-          console.log(subResponse)
-          desc = subResponse.data.works[0]
-          console.log(desc)
+
+            const subResponse = await axios.get(`https://openlibrary.org/subjects/${searchField.value}.json`, {
+                validateStatus: function (status) {
+                return status != 500 && status != 404 && status != 403 && status != 400;
+                }
+            })
+
+            console.log(subResponse)
+
+            for(let x of subResponse.data.works){
+                let result = document.createElement('p');
+                result.id = `result${resId}`;
+                result.className = 'results'
+                resId += 1;
+                result.innerText = x.title +' - '+ x.authors[0].name;
+                
+                let modal = document.createElement('div');
+                modal.id = `modal${modId}`;
+                modal.className = 'modal';
+                modal.style.lineHeight = '1.5'
+                modal.style.borderRadius = '10px'
+                modId +=1;
+                
+                let modalCloseBtn = document.createElement('button')
+                modalCloseBtn.id = `modal-close-btn${modCloseId}`
+                modalCloseBtn.style.position = 'relative'
+                modalCloseBtn.style.width = '5%'
+                modalCloseBtn.style.left = '95%'
+                modalCloseBtn.style.marginBottom = '3px'
+                modalCloseBtn.style.cursor = 'pointer'
+                
+                let modalCloseImg = document.createElement('img')
+                modalCloseImg.id = `modal-close-img${modCloseId}`
+                modalCloseImg.src = 'assets/img/close_icon.svg'
+                modalCloseImg.style.width = '100%'
+
+                modCloseId += 1;
+                
+
+                let modPara = document.createElement('p')
+                modPara.id = `modpara${modParaId}`
+                modPara.style.backgroundColor = '#5F9EA0'
+                modPara.style.borderRadius = ' 10px'
+                modPara.style.padding = '10px'
+
+                modParaId += 1;
+                
+                
+                document.getElementById('results-container').appendChild(result);
+                
+                document.getElementById('page-container').appendChild(modal);
+                desc = x.key;
+
+                document.getElementById(modal.id).appendChild(modalCloseBtn);                
+                
+                document.getElementById(modalCloseBtn.id).appendChild(modalCloseImg);
+                
+                document.getElementById(modal.id).appendChild(modPara);
+
+                document.getElementById(result.id).addEventListener('click', function(){
+                    if(modal.style.display != 'flex'){
+                        modal.style.display = 'flex';
+                        modal.style.flexDirection = 'column';
+                        resultsContainer.style.pointerEvents = 'none'
+                        resultsContainer.style.filter = 'blur(5px)'
+
+                        
+                    }
+                })
+
+
+                document.getElementById(modalCloseBtn.id).addEventListener('click', function(){
+                    if(modal.style.display == 'flex'){
+                        modal.style.display = 'none'
+                        resultsContainer.style.removeProperty('pointer-events')
+                        resultsContainer.style.removeProperty('filter')
+                    }
+                })
+                
+
+                // fetch(`https://openlibrary.org${desc}.json`)
+                // .then(response => response.json())
+                // .then(data => {
+                //     if('description' in data){
+                //         if(typeof data.description === 'object'){
+                //             modPara.innerText = data.description.value;                                    
+                            
+                //         }
+                //         else{
+                //             modPara.innerText = data.description;
+                            
+                //         }
+
+                //     }
+                //     else{
+                //         modPara.innerText = 'Nessuna descrizione trovata per il presente libro.'
+                //         modPara.style.backgroundColor = 'red'
+                //     }
+                // })
+
+                const descResponse = await axios.get(`https://openlibrary.org${desc}.json`, {
+                validateStatus: function (status) {
+                return status != 500 && status != 404 && status != 403 && status != 400;
+                }})
+                
+                if('description' in descResponse.data){
+                    if(typeof descResponse.data.description === 'object'){
+                        modPara.innerText = descResponse.data.description.value;                                    
+                        
+                    }
+                    else{
+                        modPara.innerText = descResponse.data.description;
+                        
+                    }
+    
+                }
+                else{
+                    modPara.innerText = 'Nessuna descrizione trovata per il presente libro.'
+                    modPara.style.backgroundColor = 'red'
+                }
+              
+            }
          
         }
         catch (error) {
-          console.error('ErrorettoSubject' + ' ' + error);
+            resultsContainer.appendChild(errorMsg)
+            errorMsg.innerText = error.message
+            // console.error('ErrorettoSubject' + ' ' + error.message);
         }
     }
 
     async function fetchDescApi() {
         try{
-            const descResponse = await axios.get(`https://openlibrary.org${desc}.json`);
+            const descResponse = await axios.get(`https://openlibrary.org${desc}.json`, {
+                validateStatus: function (status) {
+                return status != 500 && status != 404 && status != 403 && status != 400;
+                }
+            });
+
+            if('description' in data){
+                if(typeof data.description === 'object'){
+                    modPara.innerText = data.description.value;                                    
+                    
+                }
+                else{
+                    modPara.innerText = data.description;
+                    
+                }
+
+            }
+            // else{
+            //     modPara.innerText = 'Nessuna descrizione trovata per il presente libro.'
+            //     modPara.style.backgroundColor = 'red'
+            // }
+            
+
             console.log(descResponse)
 
         }
         catch(error){
-            console.error('ErrorettoDesc' + ' ' + error)
+            modPara.innerText = 'Nessuna descrizione trovata per il presente libro.'
+            modPara.style.backgroundColor = 'red'
+            console.error('ErrorettoDesc' + ' ' + error.message)
         }
     }
 
-    // const curu = ['Banana','Water','Chicken','Cake', 'Banana', 'Water', 'Water']
+    const curu = ['Banana','Water','Chicken','Cake', 'Banana', 'Water', 'Water']
 
-    // const lod = _.chunk(curu, 3);
-    // alert(lod);
+    const lod = _.difference(curu, ['Banana', 'Water']);
+    console.log(lod);
     
     
 
