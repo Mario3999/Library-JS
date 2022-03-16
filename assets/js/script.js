@@ -1,18 +1,6 @@
-//Creo reference a 'search-button'
-let searchButton = document.getElementById('search-button');
-
 //Creo elemento 'results-container'
 let resultsContainer = document.createElement("div");
 resultsContainer.id = "results-container";
-resultsContainer.style.display = "none";
-resultsContainer.style.width = "50%";
-resultsContainer.style.height = "70%";
-resultsContainer.style.overflow = "scroll";
-resultsContainer.style.border = "1px solid black";
-resultsContainer.style.backgroundColor = "white";
-resultsContainer.style.borderRadius = "20px";
-resultsContainer.style.marginBottom = "10px";
-resultsContainer.style.boxShadow = "0px 0px 10px black";
 
 //Creo reference per il 'page-container' (DIV che contiene l'intera pagina)
 let pageContainer = document.getElementById('page-container');
@@ -26,22 +14,15 @@ let searchField = document.getElementById('search-field');
 //Creo il Close Button per il box dei risultati
 let resContainerCloseBtn = document.createElement('button')
 resContainerCloseBtn.id = 'resContainer-close-btn'
-resContainerCloseBtn.style.position = 'relative'
-resContainerCloseBtn.style.width = '5%'
-resContainerCloseBtn.style.left = '50%'
-resContainerCloseBtn.style.marginBottom = '3px'
-resContainerCloseBtn.style.cursor = 'pointer'
 
 //Immagine della 'X' per il Close Button della box dei risultati
 let resContainerCloseImg = document.createElement('img')
 resContainerCloseImg.id = 'resContainer-close-img'
 resContainerCloseImg.src = 'assets/img/close_icon.svg'
-resContainerCloseImg.style.width = '100%'
 
 //Creo elemento 'p' per i messaggi di errore
 let errorMsg = document.createElement('p')
 errorMsg.className = 'errorMsg'
-errorMsg.style.backgroundColor = 'red'
 
 //Appendo il Close Button con relativa immagine al box dei risultati
 document.getElementById('results-container').appendChild(resContainerCloseBtn)
@@ -52,33 +33,31 @@ resContainerCloseBtn.addEventListener('click', function (){
     resultsContainer.style.display = 'none'
 })
 
+//Al click del 'search-button'
+document.getElementById('search-button').addEventListener('click', fetchApi);
+
+//Alla pressione del tasto Enter nel 'text-box'
+document.getElementById('search-field').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+
+        fetchApi();
+    }
+});
 
 
-//Creo variabili da utilizzare per gli IDs degli elementi quando fetcho
+
+//Creo variabili da utilizzare per l'assegnazione degli IDs agli elementi che credo quando fetcho
 let resId = 0;
 let modId = 0;
 let modCloseId = 0;
 let modParaId = 0;
-let desc;
-
-//Al click del 'search-button'
-document.getElementById('search-button').addEventListener('click', fetchApi);
-
-//Alla pressione del tasto Enter in 'text-box'
-document.getElementById('search-field').addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        
-        fetchApi();
-
-    }
-});
-
 
 async function fetchApi() {
 
     resultsContainer.style.display = "flex";
     resultsContainer.style.flexDirection = "column";
 
+    //Pulisco il results container ogni volta che la funzione viene invocata
     document.querySelectorAll(".results").forEach(el => el.remove());
     document.querySelectorAll(".modal").forEach(el => el.remove());
     document.querySelectorAll(".errorMsg").forEach(el => el.remove());
@@ -88,7 +67,6 @@ async function fetchApi() {
     }
 
     try {
-
         const subResponse = await axios.get(`https://openlibrary.org/subjects/${searchField.value}.json`, {
             validateStatus: function (status) {
             return status != 500 && status != 404 && status != 403 && status != 400;
@@ -100,6 +78,7 @@ async function fetchApi() {
         if(workCount < 1){
             resultsContainer.appendChild(errorMsg)
             errorMsg.innerText = 'Nessun risultato per il genere inserito.'
+            return
         }
 
         let dataWorks = _.get(subResponse, 'data.works')
@@ -109,39 +88,30 @@ async function fetchApi() {
             result.id = `result${resId}`;
             result.className = 'results'
             resId += 1;
-            result.innerText = x.title +' - '+ x.authors[0].name;
+            result.innerText = _.get(x, 'title') +' - '+ _.get(x, 'authors[0].name');
             
             let modal = document.createElement('div');
             modal.id = `modal${modId}`;
             modal.className = 'modal';
-            modal.style.lineHeight = '1.5'
-            modal.style.borderRadius = '10px'
+            
             modId +=1;
             
             let modalCloseBtn = document.createElement('button')
             modalCloseBtn.id = `modal-close-btn${modCloseId}`
-            modalCloseBtn.style.position = 'relative'
-            modalCloseBtn.style.width = '5%'
-            modalCloseBtn.style.left = '95%'
-            modalCloseBtn.style.marginBottom = '3px'
-            modalCloseBtn.style.cursor = 'pointer'
+            modalCloseBtn.className = 'modal-close-btn'
             
             let modalCloseImg = document.createElement('img')
             modalCloseImg.id = `modal-close-img${modCloseId}`
+            modalCloseImg.className = "modal-close-img"
             modalCloseImg.src = 'assets/img/close_icon.svg'
-            modalCloseImg.style.width = '100%'
 
             modCloseId += 1;
-            
 
             let modPara = document.createElement('p')
             modPara.id = `modpara${modParaId}`
-            modPara.style.backgroundColor = '#5F9EA0'
-            modPara.style.borderRadius = ' 10px'
-            modPara.style.padding = '10px'
+            modPara.className = 'modpara'
 
             modParaId += 1;
-            
             
             document.getElementById('results-container').appendChild(result);
             
@@ -159,11 +129,8 @@ async function fetchApi() {
                     modal.style.flexDirection = 'column';
                     resultsContainer.style.pointerEvents = 'none'
                     resultsContainer.style.filter = 'blur(5px)'
-
-                    
                 }
             })
-
 
             document.getElementById(modalCloseBtn.id).addEventListener('click', function(){
                 if(modal.style.display == 'flex'){
@@ -173,11 +140,10 @@ async function fetchApi() {
                 }
             })
             
-
+            //Il workCode mi serve per fetchare le api della descrizione dei libri
+            let workCode = _.get(x, 'key')
+            
             try{
-
-                let workCode = _.get(x, 'key')
-
                 const descResponse = await axios.get(`https://openlibrary.org${workCode}.json`, {
                 validateStatus: function (status) {
                 return status != 500 && status != 404 && status != 403 && status != 400;
@@ -219,8 +185,7 @@ async function fetchApi() {
     modId = 0;
     modCloseId = 0;
     modParaId = 0;
-    desc = '';
-}
+};
 
 
 
