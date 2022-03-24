@@ -46,7 +46,7 @@ document.getElementById('search-field').addEventListener('keypress', function (e
 
 
 
-//Creo variabili da utilizzare per l'assegnazione degli IDs agli elementi che credo quando fetcho
+//Creo variabili da utilizzare per l'assegnazione degli IDs agli elementi che creo quando fetcho
 let resId = 0;
 let modId = 0;
 let modCloseId = 0;
